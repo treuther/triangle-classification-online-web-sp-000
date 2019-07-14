@@ -1,27 +1,33 @@
 class Triangle
   # write code here
-  attr_accessor :x, :y, :z
-  def initialize(x, y, z)
-    @x = x
-    @y = y
-    @z = z
+  attr_accessor :s_1, :s_2, :s_3, :kind
+
+  def initialize(s_1, s_2, s_3)
+    @s_1 = s_1
+    @s_2 = s_2
+    @s_3 = s_3
   end
 
   def kind
-    if @x == @y && @y == @z && @z == @x
-      :equilateral
-    elsif @x != @y && @y != @z && @z !=@x
-      :scalene
+    if (s_1 * s_2 * s_3) == 0 || (s_1 + s_2) <= s_3 || (s_2 + s_3) <= s_1 || (s_1 + s_3) <= s_2
+
+      begin
+        raise TriangleError
+      end
+
+    elsif s_1 == s_2 && s_1 == s_3
+      self.kind = :equilateral
+    elsif s_1 == s_2 || s_1 == s_3 || s_2 == s_3
+      self.kind = :isosceles
     else
-      :isosceles
+      self.kind = :scalene
     end
-    if @x == 0 || @y == 0 || @z == 0
-      raise TriangleError
-    end
+  end
 end
 
   class TriangleError < StandardError
-
+    #triangle error code
+    def message
+      puts "not a triangle"
+    end
   end
-
-end
