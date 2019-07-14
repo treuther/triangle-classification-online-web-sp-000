@@ -23,7 +23,7 @@ class Triangle
       self.kind = :scalene
     end
   end
-end
+
 
   class TriangleError < StandardError
     #triangle error code
@@ -31,3 +31,4 @@ end
       puts "not a triangle"
     end
   end
+end
